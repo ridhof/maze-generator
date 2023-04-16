@@ -116,6 +116,11 @@
 		</p>
 		<hr>
 		<div class="controls">
+      <p>
+				<label for="maze-amount">Maze amount:</label>
+				<input id="maze-amount" type="number" name="maze-amount" value="1" min="1">
+			</p>
+
 			<p>
 				<label for="wall-size">Wall thickness:</label>
 				<input id="wall-size" type="number" name="" value="10" min="1">
@@ -183,7 +188,7 @@
 			const createMazeButton = document.getElementById('create-maze');
 			createMazeButton.classList.toggle("hide")
 		</script>
-		<canvas id="maze"></canvas>
+    <div id="canvas_div"></div>
 		<script type="text/javascript" src="src/globals.js"></script>
 		<script type="text/javascript" src="src/utils.js"></script>
 		<script type="text/javascript" src="src/entries.js"></script>

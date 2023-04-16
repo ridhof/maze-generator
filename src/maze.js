@@ -389,8 +389,8 @@ Maze.prototype.removeMazeWalls = function() {
 	}
 }
 
-Maze.prototype.draw = function() {
-	const canvas = document.getElementById('maze');
+Maze.prototype.draw = function(canvasID) {
+	const canvas = document.getElementById(canvasID);
 	if (!canvas || !this.matrix.length) {
 		return;
 	}
@@ -401,7 +401,7 @@ Maze.prototype.draw = function() {
 		return;
 	}
 
-	canvas.width = ((this.width * 2) + 1) * this.wallSize;;
+	canvas.width = ((this.width * 2) + 1) * this.wallSize;
 	canvas.height = ((this.height * 2) + 1) * this.wallSize;
 
 	const ctx = canvas.getContext('2d');
