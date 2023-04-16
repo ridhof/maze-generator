@@ -108,12 +108,6 @@
 	</head>
 	<body>
 		<h1>Maze Generator</h1>
-		<p>
-			Create, solve and download random maze puzzles in any size or color with this online tool. Enter the values for your maze design below and click the "Generate Maze" button.</p>
-		<p>
-			The <a href="https://en.wikipedia.org/wiki/Maze_generation_algorithm#Recursive_backtracker">recursive backtracking algorithm</a> is used to create the mazes.
-			For more information check out the <a href="https://github.com/keesiemeijer/maze-generator">Github Repository</a>.
-		</p>
 		<hr>
 		<div class="controls">
       <p>
@@ -152,32 +146,8 @@
 					<option value="vertical">vertical</option>
 				</select>
 			</p>
-			<p class='desc'>
-				The maze can be solved in multiple ways if you remove maze walls. (maximum <span>300</span> walls)<br/>
-				The <a href='https://en.wikipedia.org/wiki/A*_search_algorithm'>A* search algorithm</a> is used to find the shortest path. This takes more time solving the maze.
-			</p>
-			<p style='padding-bottom: 0; margin-bottom: 0;'>
-				<label for="remove_walls">Remove maze walls:</label>
-				<input id="remove_walls" type="number" name="remove_walls" value="0" min="0" max="200">
-			</p>
-			<p class='desc'>
-				Click the colors below to select a color from a color pallete.
-			</p>
-			<div class="color-picker" data-default="#ffffff">
-				<label for="backgroundColor">Background Color</label> 
-				<input type="text" class="" id="backgroundColor" name="backgroundColor" value="#ffffff"><div class="color-sample" style="background-color:#ffffff"></div>
-			</div>
-			<div class="color-picker" data-default="#000000">
-				<label for="color">Maze Color</label> 
-				<input type="text" class="" id="color" name="color" value="#000000"><div class="color-sample" style="background-color:#000000"></div>
-			</div>
-			<div class="color-picker" data-default="#cc3737">
-				<label for="solveColor">Solve Color</label> 
-				<input type="text" class="" id="solveColor" name="solveColor" value="#cc3737" pattern="^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"><div class="color-sample" style="background-color:#cc3737"></div>
-			</div>
 			<div id="generate">
 				<button id="create-maze" onclick="initMaze();" class='hide'>Generate Maze</button>
-				<button id="solve" onclick="initSolve();" class='hide'>Solve Maze</button>
 				<a href="" class="hide" id="download">download maze</a>
 			</div>
 		</div>
@@ -193,7 +163,6 @@
 		<script type="text/javascript" src="src/utils.js"></script>
 		<script type="text/javascript" src="src/entries.js"></script>
 		<script type="text/javascript" src="src/maze.js"></script>
-		<script type="text/javascript" src="src/solver.js"></script>
 		<script type="text/javascript" src="src/app.js"></script>
 		<script type="text/javascript" src="src/human-colours-en-gb.js"></script>
 		<script type="text/javascript" src="src/color-picker.js"></script>

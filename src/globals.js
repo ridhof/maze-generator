@@ -7,7 +7,6 @@
 // With recursive backtracking the whole maze is stored in memory.
 
 const maxMaze = 75000;
-const maxSolve = 30000;
 const maxCanvas = 16080100;
 const maxCanvasDimension = 32760;
 

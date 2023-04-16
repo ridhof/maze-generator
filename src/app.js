@@ -6,10 +6,6 @@ if (typeof maxMaze === 'undefined') {
     maxMaze = 0;
 }
 
-if (typeof maxSolve === 'undefined') {
-    maxSolve = 0;
-}
-
 if (typeof maxCanvas === 'undefined') {
     maxCanvas = 0;
 }
@@ -28,11 +24,6 @@ if (removeMaxWallsText) {
     removeMaxWallsText.innerHTML = maxWallsRemove;
 }
 
-const removeWallsInput = document.getElementById('remove_walls');
-if (removeWallsInput) {
-    removeWallsInput.max = maxWallsRemove;
-}
-
 const download = document.getElementById("download");
 download.addEventListener("click", downloadImage, false);
 download.setAttribute('download', 'maze.png');
@@ -43,18 +34,15 @@ function getSettings() {
         width: getInputIntVal('width', 20),
         height: getInputIntVal('height', 20),
         wallSize: getInputIntVal('wall-size', 10),
-        removeWalls: getInputIntVal('remove_walls', 0),
         entryType: '',
         bias: '',
         color: '#000000',
         backgroudColor: '#FFFFFF',
-        solveColor: '#cc3737',
 
         // restrictions
         maxMaze: maxMaze,
         maxCanvas: maxCanvas,
         maxCanvasDimension: maxCanvasDimension,
-        maxSolve: maxSolve,
         maxWallsRemove: maxWallsRemove,
 
         //printing
@@ -67,19 +55,6 @@ function setupMaze(index) {
     download.innerHTML = 'download maze';
 
     const settings = getSettings();
-    const colors = ['color', 'backgroundColor', 'solveColor'];
-    for (let i = 0; i < colors.length; i++) {
-        const colorInput = document.getElementById(colors[i]);
-        settings[colors[i]] = colorInput.value
-        if (!isValidHex(settings[colors[i]])) {
-            let defaultColor = colorInput.parentNode.dataset.default;
-            colorInput.value = defaultColor;
-            settings[colors[i]] = defaultColor;
-        }
-
-        const colorSample = colorInput.parentNode.querySelector('.color-sample');
-        colorSample.style = 'background-color: ' + settings[colors[i]] + ';';
-    }
 
     if (settings['removeWalls'] > maxWallsRemove) {
         settings['removeWalls'] = maxWallsRemove;
@@ -111,11 +86,6 @@ function setupMaze(index) {
         download.classList.toggle("hide");
     }
 
-    const solveButton = document.getElementById("solve");
-    if (solveButton && solveButton.classList.contains('hide')) {
-        solveButton.classList.toggle("hide");
-    }
-
     mazeNodes = {}
     if (maze.matrix.length) {
         mazeNodes = maze;
@@ -138,7 +108,7 @@ function downloadImage(e) {
     const settings = getSettings();
     const gap = ((settings.gap * 2) + 1) * settings.wallSize;
     newCanvas.width = ((((settings.width * 2) + 1) * settings.wallSize) + gap) * 3;
-    newCanvas.height = ((((settings.height * 2) + 1) * settings.wallSize) + gap) * 3;
+    newCanvas.height = ((((settings.height * 2) + 1) * settings.wallSize) + gap) * (settings.mazeAmount / 2);
 
     const newContext = newCanvas.getContext('2d');
     let columnCount = 0;
@@ -161,28 +131,4 @@ function downloadImage(e) {
     const image = newCanvas.toDataURL("image/png");
     image.replace("image/png", "image/octet-stream");
     download.setAttribute("href", image);
-}
-
-function initSolve() {
-    const solveButton = document.getElementById("solve");
-    if (solveButton) {
-        solveButton.classList.toggle("hide");
-    }
-
-    download.setAttribute('download', 'maze-solved.png');
-    download.innerHTML = 'download solved maze';
-
-    if ((typeof mazeNodes.matrix === 'undefined') || !mazeNodes.matrix.length) {
-        return;
-    }
-
-    const solver = new Solver(mazeNodes);
-    solver.solve();
-    if (mazeNodes.wallsRemoved) {
-        solver.drawAstarSolve();
-    } else {
-        solver.draw();
-    }
-
-    mazeNodes = {}
 }

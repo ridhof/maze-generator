@@ -7,7 +7,6 @@ function Maze(args) {
 		bias: '',
 		color: '#000000',
 		backgroundColor: '#FFFFFF',
-		solveColor: '#cc3737',
 		removeWalls: 0,
 
 		// Maximum 300 walls can be removed
@@ -17,7 +16,6 @@ function Maze(args) {
 		maxMaze: 0,
 		maxCanvas: 0,
 		maxCanvasDimension: 0,
-		maxSolve: 0,
 	}
 
 	const settings = Object.assign({}, defaults, args);
@@ -32,11 +30,9 @@ function Maze(args) {
 	this.bias = settings['bias'];
 	this.color = settings['color'];
 	this.backgroundColor = settings['backgroundColor'];
-	this.solveColor = settings['solveColor'];
 	this.maxMaze = parseInt(settings['maxMaze'], 10);
 	this.maxCanvas = parseInt(settings['maxCanvas'], 10);
 	this.maxCanvasDimension = parseInt(settings['maxCanvasDimension'], 10);
-	this.maxSolve = parseInt(settings['maxSolve'], 10);
 	this.maxWallsRemove = parseInt(settings['maxWallsRemove'], 10);
 }
 
